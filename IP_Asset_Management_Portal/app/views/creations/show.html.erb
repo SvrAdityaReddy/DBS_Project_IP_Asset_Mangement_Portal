@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Title:</strong>
+  <%= @creation.title %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @creation.tp %>
+</p>
+
+<p>
+  <strong>Proposal:</strong>
+  <%= @creation.proposal %>
+</p>
+ 
+<p>
+  <strong>Creator:</strong>
+  <%=  %>
+</p>
+
+<!-- <p>
+  <strong>Royalty:</strong>
+  <%= @creation.royalty %>
+</p>
+ -->
+<!-- <p>
+  <strong>Liabilities:</strong>
+  <%= @creation.liabilities %>
+</p>
+ -->
+<!-- <p>
+  <strong>Ip policy:</strong>
+  <%= @creation.ip_policy %>
+</p>
+ -->
+<!-- <p>
+  <strong>Ip flag:</strong>
+  <%= @creation.ip_flag %>
+</p>
+ -->
+<%#= link_to 'Edit', edit_creation_path(@creation) %>
+<%if current_user.adminflag? %>
+<%= link_to 'View all IP assets', al_path %></li>
+<%else%>
+<%= link_to 'View IP assets', owned_path %> |
+<%= link_to 'View creations in process', inprocess_path %>
+<%end%>

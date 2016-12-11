@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Filing Creation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3-theme-indigo.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+<body>
+  <header class="w3-container w3-theme w3-padding" id="myHeader">
+  <div class="w3-center">
+  <h1 class="w3-xxxlarge w3-animate-bottom">IIITB IP Asset Management</h1>
+  </div>
+</header>
+<!-- <div>Hi <%= current_user.name %></div> -->
+    <%= form_for :creation , url: creations_path, html: { multipart: true } do |f| %>
+<!--     <div class="field">
+    <%= f.label :creation_id %>
+    <%= f.number_field :creation_id %>
+  </div> -->
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title , required: true %>
+  </div>
+  
+
+ <div class="field">
+    <%= f.label :type %><br />
+    <%= f.select :tp,[['Algorithms and Theoritical Computer Science','Algorithms and Theoritical Computer Science'],['Artificial Intelligence and Machine Learning','Artificial Intelligence and Machine Learning'],['Computational Biology','Computational Biology'],['Computer Architecture and Integrated Systems','Computer Architecture and Integrated Systems'],['Data Management and Information Retrieval','Data Management and Information Retrieval'],['Electronics and System Design','Electronics and System Design'],['Graphic and Vision','Graphic and Vision'],['Human-Computer Interaction','Human-Computer Interaction'],['Information and Communication Theory','Information and Communication Theory'],['Networking','Networking'],['Other','Other'],['Programming Languages and Formal Methods','Programming Languages and Formal Methods'],['Security and Cryptography','Security and Cryptography'],['Signal and Image Processing','Signal and Image Processing'],['Systems','Systems']], required: true %>
+  </div>
+
+ <!-- <div class="field">
+    <%= f.label :proposal %>
+    <%= f.text_field :proposal %>
+  </div> -->
+  <div> 
+  <%= f.label :proposal %>
+  <!--<%= f.file_field :proposal , required: true%> -->
+  <%= f.file_field :avatar %>
+  </div>
+  <br/>
+    <!-- <div class="field">
+    <%= f.label :creator_id %>
+    <%= f.number_field :creator_id %>
+  </div> -->
+
+  <!-- <div class="field">
+    <%= f.label :royalty %>
+    <%= f.number_field :royalty %>
+  </div> -->
+
+  <!-- <div class="field">
+    <%= f.label :liabilities %>
+    <%= f.number_field :liabilities %>
+  </div>
+ -->
+<!--   <div class="field">
+    <%= f.label :ip_policy %>
+    <%= f.text_field :ip_policy %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ip_flag %>
+    <%= f.number_field :ip_flag %>
+  </div>
+ -->  
+  <!--<div>
+  <label>Proposal Document </label>
+        <input type="file" name="fl" value="" placeholder="Upload the file" required="required" /></div> <br/><br/> -->
+
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
+<% end %>
+    <!-- <form> -->
+        <!-- <label>Title </label> -->
+        <!-- <input type="text" name="title" value="" placeholder="Enter Title of Creation" required="required" /> <br/><br/> -->
+        <!-- <label>Type </label> -->
+        <!-- <input type="text" name="typ" value="" placeholder="Enter type of Creation" required="required" /> <br/><br/> -->
+
+    <!--     <label> Type </label>
+            <select name="typ">
+                <option value="Data 1">Algorithms and Theoritical Computer Science</option>
+                <option value="Data 2">Artificial Intelligence and Machine Learning</option>
+                <option value="Data 3">Computational Biology</option>
+                <option value="Data 4">Computer Architecture and Integrated Systems</option>
+                <option value="Data 5">Data Management and Information Retrieval</option>
+                <option value="Data 6">Graphic and Vision</option>
+                <option value="Data 7">Human-Computer Interaction</option>
+                <option value="Data 8">Information and Communication Theory</option>
+                <option value="Data 9">Networking</option>
+                <option value="Data 10">Other</option>
+                <option value="Data 11">Programming Languages and Formal Methods</option>
+                <option value="Data 12">Security and Cryptography</option>
+                <option value="Data 13">Signal and Image Processing</option>
+                <option value="Data 14">Systems</option>
+            </select> <br/> <br/>
+        <label>Proposal Document </label>
+        <input type="file" name="fl" value="" placeholder="Upload the file" required="required" /> <br/><br/>
+        <input type="submit" value="Submit"/> 
+    </form> -->
+</body>
+</html>

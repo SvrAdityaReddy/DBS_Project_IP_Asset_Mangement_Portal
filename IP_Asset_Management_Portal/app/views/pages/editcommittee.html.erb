@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Edit IP committee
+	</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3-theme-indigo.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+<body>
+	<header class="w3-container w3-theme w3-padding" id="myHeader">
+		<div class="w3-center">
+ 	 		<h1 class="w3-xxxlarge w3-animate-bottom">Faculty Member</h1>
+ 		</div>
+	</header>
+	<h4 style="color: #54575b;"> Grey entries are IP committee </h4>
+	<div>
+		<%= form_for :root, url: modify_path  do |f| %>
+  			<%= grid(@ecoms_grid) do |g|
+			g.action_column html_check_box: true
+
+			g.column  name: 'Name' do |ecom|
+				if ecom.IPflag == 1
+      				[ecom.name, {style: 'background-color: rgb(192, 192, 192);'}]
+    			else
+      				ecom.name
+    			end
+			end
+
+			g.column name: 'Email' do |ecom|
+				if ecom.IPflag == 1
+      				[ecom.email, {style: 'background-color: rgb(192, 192, 192);'}]
+    			else
+      				ecom.email
+    			end
+			end
+
+			# g.column name: 'IP Committee' do |ecom|
+			# 	if ecom.IPflag == 1
+   #    				[ecom.IPflag, {style: 'background-color: rgb(192, 192, 192);'}]
+   #  			else
+   #    				ecom.IPflag
+   #  			end
+			# end
+
+			g.column name: 'Occupation' do |ecom|
+				if ecom.IPflag == 1
+      				[ecom.Occupation, {style: 'background-color: rgb(192, 192, 192);'}]
+    			else
+      				ecom.Occupation
+    			end
+			end
+
+		end-%>
+
+  			<!-- <p> -->
+    		<%= f.submit "Update", :name => 'first' %>
+    		<%= f.submit "Remove", :name => 'second' %>
+  			<!-- </p> -->
+		<% end %>
+	</div>
+
+
+</body>
+</html>

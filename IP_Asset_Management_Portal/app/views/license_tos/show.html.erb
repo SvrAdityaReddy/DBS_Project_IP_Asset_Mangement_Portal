@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @license_to.name %>
+</p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @license_to.uid %>
+</p>
+
+<p>
+  <strong>License agreement:</strong>
+  <%=link_to 'License Agreement', @license_to.licenceagreement.url, :target => "_blank"%>
+</p>
+
+<%= link_to 'Edit', edit_license_to_path(@license_to) %> |
+<%#= link_to 'Back', license_tos_path %>
+<%= link_to 'Back', home_path %>

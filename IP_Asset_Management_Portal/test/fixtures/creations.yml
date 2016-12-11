@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  creation_id: 1
+  title: MyString
+  tp: MyString
+  proposal: MyString
+  creator_id: 1
+  royalty: 1
+  liabilities: 1
+  ip_policy: MyString
+  ip_flag: 1
+
+two:
+  creation_id: 1
+  title: MyString
+  tp: MyString
+  proposal: MyString
+  creator_id: 1
+  royalty: 1
+  liabilities: 1
+  ip_policy: MyString
+  ip_flag: 1

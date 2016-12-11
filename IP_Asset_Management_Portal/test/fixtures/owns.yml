@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  precentage: 1.5
+  email: MyString
+
+two:
+  precentage: 1.5
+  email: MyString

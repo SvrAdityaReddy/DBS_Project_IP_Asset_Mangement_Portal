@@ -1,0 +1,50 @@
+<%= form_for(@creation, url: { action: "validate"}, html: {method: "POST"}) do |f| %>
+  <% if @creation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@creation.errors.count, "error") %> prohibited this creation from being saved:</h2>
+
+      <ul>
+      <% @creation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title ,:readonly => true%>
+  </div>
+
+  <div class="field">
+    <%= f.label :tp %>
+    <%= f.text_field :tp ,:readonly => true%>
+  </div>
+
+  <div class="field">
+    <%= f.label :creator_id %>
+    <%= f.number_field :creator_id ,:readonly => true%>
+  </div>
+
+  <div class="field">
+    <%= f.label :ip_policy %>
+    <%= f.text_field :ip_policy %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ip_flag %>
+    <%= f.number_field :ip_flag %>
+  </div>
+  <%if current_user.IPflag? %>
+  <div class="actions">
+    <input type="submit" name="commit" value="Update IP Asset" data-disable-with="Update Creation" />
+  </div>
+  <%else%>
+  <div class="actions">
+    <input type="submit" name="commit" value="Update Creation" data-disable-with="Update Creation" />
+  </div>
+  <%end%>
+<!--   <div class="actions">
+    <%= f.submit %>
+  </div> -->
+<% end %>

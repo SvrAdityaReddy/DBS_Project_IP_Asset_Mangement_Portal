@@ -1,0 +1,67 @@
+body {
+  font-size: 16px;
+  color: teal;
+  background-color: white;
+  font-family: 'Oxygen', sans-serif;
+}
+
+#logo-img {
+  background: url('iiitb.png') no-repeat;
+  width: 700px;
+  height: 300px;
+  margin: 0px 0px 20px 0px;
+}
+
+#license-img {
+  background: url('license.png') no-repeat;
+  width: 300px;
+  height: 255px;
+  margin: 0px 0px 20px 50px;
+}
+
+#file-img{
+  background: url('upload.png') no-repeat;
+  width: 300px;
+  height: 255px;
+  margin: 10px 15px 10px 60px;
+}
+
+#own-img{
+  align-self: center;
+  background: url('onwed.png') no-repeat;
+  width: 400px;
+  height: 255px;
+  margin: 15px 0px 0px 90px;
+}
+
+#p-img{
+  align-self: center;
+  background: url('process.png') no-repeat;
+  width: 400px;
+  height: 255px;
+  margin: 15px 0px 0px 40px;
+}
+
+#v-img{
+  align-self: center;
+  background: url('validation.png') no-repeat;
+  width: 400px;
+  height: 255px;
+  margin: 15px 0px 0px 25px;
+}
+
+#view-img{
+  align-self: center;
+  background: url('view.jpg') no-repeat;
+  width: 400px;
+  height: 255px;
+  margin: 15px 0px 0px 165px;
+}
+
+#edit-img{
+  align-self: center;
+  background: url('edit.png') no-repeat;
+  width: 400px;
+  height: 255px;
+  margin: 15px 10px 10px 185px;
+}

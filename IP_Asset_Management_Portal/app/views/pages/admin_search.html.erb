@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Search IP asset</title>
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+<!-- CSS styles for standard search box -->
+<style type="text/css">
+	#tfheader{
+	}
+	#tfnewsearch{
+		float:left;
+		padding:20px;
+	}
+	.heading{
+		text-align: left;
+		color: teal;
+	}
+	.tftextinput{
+		margin: 0;
+		padding: 5px 15px;
+		font-family: Arial, Helvetica,sans-serif;
+		font-size:14px;
+		border:1px solid grey; border-right:0px;
+		border-top-left-radius: 5px 5px;
+		border-bottom-left-radius: 5px 5px;
+	}
+	.tfbutton {
+		margin: 0;
+		padding: 5px 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size:14px;
+		outline: black;
+		cursor: pointer;
+		text-align: center;
+		color: white;
+		border: solid 1px grey;
+		background: black;
+		background: -webkit-gradient(linear, left top, left bottom, from(teal), to(teal));
+		background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+		border-top-right-radius: 5px 5px;
+		border-bottom-right-radius: 5px 5px;
+	}
+	.tfbutton:hover {
+		text-decoration: none;
+		background: #007ead;
+		background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+		background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+	}
+	/* Fixes submit button height problem in Firefox */
+	.tfbutton::-moz-focus-inner {
+	  border: 1px;
+	}
+	.tfclear{
+		clear:both;
+	}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3-theme-indigo.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+<body>
+
+	<header class="w3-container w3-theme w3-padding" id="myHeader">
+  <div class="w3-center">
+  <h1 class="w3-xxxlarge w3-animate-bottom">IIITB's IP Assets</h1>
+  </div>
+</header>
+	<!-- HTML for SEARCH BAR -->
+	<h1>All IP Assets</h1>
+	<div>
+		<%= form_for :root, url: money_path  do |f| %>
+			<%= grid(@creations_grid) do |g|
+			  g.action_column html_check_box: true
+			  g.column name: 'ID' do |creation|
+			    creation.id
+			  end
+
+			  g.column name: 'Title' do |creation|
+			    creation.title
+			  end
+
+			  g.column name: 'Type' do |creation|
+			    creation.tp
+			  end
+
+			  g.column name: 'Created_at' do |creation|
+			    creation.created_at
+			  end
+
+			  g.column name: 'Royalty' do |creation|
+			    creation.royalty
+			  end
+
+			  g.column name: 'Liabilites' do |creation|
+			    creation.liabilities
+			  end
+			  g.column name: 'Policy Document' do |creation|
+		        link_to 'Document', creation.avatar.url, :target => "_blank"
+		      end
+			  g.column name: 'Add' do |creation|
+	    		link_to 'Add Royalty or Liability',edit_creation_path(creation)
+	  			end
+			end -%>
+			<b><%= f.submit "Add Owner"%></b>
+		<% end %>
+	</div>
+	</div>
+</body>
+</html>
+

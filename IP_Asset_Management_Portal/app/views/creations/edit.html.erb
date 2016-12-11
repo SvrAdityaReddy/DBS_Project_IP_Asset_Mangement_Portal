@@ -1,0 +1,14 @@
+<%if current_user.adminflag? %>
+<h1>Editing IP Asset</h1>
+<%else%>
+<h1>Editing Creation</h1>
+<%end%>
+
+<%= render 'form', creation: @creation %>
+
+<%= link_to 'Show', @creation %> |
+<%if current_user.adminflag? %>
+<%= link_to 'Back', al_path %>
+<%else%>
+<%= link_to 'Back', creations_path %>
+<%end%>

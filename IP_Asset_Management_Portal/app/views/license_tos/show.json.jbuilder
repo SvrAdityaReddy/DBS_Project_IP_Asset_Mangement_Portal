@@ -1,0 +1,1 @@
+json.partial! "license_tos/license_to", license_to: @license_to

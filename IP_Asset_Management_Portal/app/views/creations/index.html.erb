@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Creations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Creation_id  </th>
+      <th>Title  </th>
+      <th>Type</th>
+      <!-- <th>Proposal</th> -->
+      <!-- <th>Creator</th> -->
+      <th>Royalty   </th>
+      <th>Liabilities</th>
+      <!-- <th>Ip policy</th> -->
+      <th>Ip flag</th>
+      <th colspan="20"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @creations.each do |creation| %>
+      <tr>
+        <td><%= creation.id %></td>
+        <td><%= creation.title %></td>
+        <td><%= creation.tp %></td>
+        <!-- <td><%= creation.proposal %></td> -->
+        <!-- <td><%= creation.creator_id %></td> -->
+        <td><%= creation.royalty %></td>
+        <td><%= creation.liabilities %></td>
+        <!-- <td><%= creation.ip_policy %></td> -->
+        <td><%= creation.ip_flag %></td>
+        <td><%= link_to 'Show', creation %></td>
+        <td><%= link_to 'Edit', edit_creation_path(creation) %></td>
+        <td><%= link_to 'Destroy', creation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<!-- <%= link_to 'New Creation', fileIP_path %> -->

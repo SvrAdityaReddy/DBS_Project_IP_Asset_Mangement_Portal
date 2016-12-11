@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Owns</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Precentage</th>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @owns.each do |own| %>
+      <tr>
+        <td><%= own.precentage %></td>
+        <td><%= own.email %></td>
+        <td><%= link_to 'Show', own %></td>
+        <td><%= link_to 'Edit', edit_own_path(own) %></td>
+        <td><%= link_to 'Destroy', own, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Own', new_own_path %>

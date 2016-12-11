@@ -1,0 +1,1 @@
+json.array! @license_tos, partial: 'license_tos/license_to', as: :license_to

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Public IP's
+	</title>
+<style type="text/css">
+	.heading{
+		text-align: left;
+		color: #363e4c;
+	}
+	.t{
+		text-align: center;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 50px;
+	}
+</style>
+</head>
+
+<body>
+<h1>ALL public IPS are</h1>
+<div>
+	<%= grid(@pubips_grid) do |g|
+		g.column do |pubip|
+			pubip.id
+		end
+		g.column  do |pubip|
+			pubip.creation_id
+		end
+
+		g.column do |pubip|
+			pubip.title
+		end
+
+		g.column do |pubip|
+			pubip.creator_id
+		end
+	end-%>
+</div>
+
+</body>
+</html>
