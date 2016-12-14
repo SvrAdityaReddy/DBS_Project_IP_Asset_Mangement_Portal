@@ -14,4 +14,4 @@ IP Asset Management Portal build on Ruby on Rails<br/>
   * rake db:migrate
   * rake db:install
   * rails -s
-  * Open http://localhost:3000/ in a browser
+  * Open "http://localhost:3000/" in a browser
