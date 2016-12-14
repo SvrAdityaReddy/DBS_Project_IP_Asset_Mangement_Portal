@@ -14,4 +14,4 @@ IP Asset Management Portal build on Ruby on Rails<br/>
 
 * **Running the portal**
   * rails -s
-  * Open the link [link] (http://localhost:3000/)
+  * Click on [link] (http://localhost:3000/)
