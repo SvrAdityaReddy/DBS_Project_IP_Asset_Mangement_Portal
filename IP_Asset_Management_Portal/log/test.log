@@ -1,0 +1,776 @@
+  [1m[35m (97.5ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) PRIMARY KEY) ENGINE=InnoDB[0m
+  [1m[35m (75.8ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT GET_LOCK('8099858807194810110', 0);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to DeviseCreateUsers (20161108181455)
+  [1m[35m (85.6ms)[0m  [1m[35mCREATE TABLE `users` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `Occupation` varchar(255), `IPflag` int DEFAULT 0 NOT NULL, `adminflag` int DEFAULT 0 NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `confirmation_token` varchar(255), `confirmed_at` datetime, `confirmation_sent_at` datetime, `unconfirmed_email` varchar(255), `failed_attempts` int DEFAULT 0 NOT NULL, `unlock_token` varchar(255), `locked_at` datetime, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (178.2ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_email`  ON `users` (`email`) [0m
+  [1m[35m (145.1ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_reset_password_token`  ON `users` (`reset_password_token`) [0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20161108181455')[0m
+  [1m[35m (42.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateLicenseTos (20161112170328)
+  [1m[35m (65.9ms)[0m  [1m[35mCREATE TABLE `license_tos` (`id` int AUTO_INCREMENT PRIMARY KEY, `creation_id` int, `name` varchar(255) NOT NULL, `uid` int NOT NULL, `license_agreement` text NOT NULL, `LIA_file_name` varchar(255), `LIA_content_type` varchar(255), `LIA_file_size` int, `LIA_updated_at` datetime, `approve` tinyint(1), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_license_tos_on_creation_id`  (`creation_id`)) ENGINE=InnoDB[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20161112170328')[0m
+  [1m[35m (43.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCreations (20161113123948)
+  [1m[35m (79.4ms)[0m  [1m[35mCREATE TABLE `creations` (`id` int AUTO_INCREMENT PRIMARY KEY, `title` varchar(255), `tp` varchar(255), `proposal` varchar(255), `creator_id` int, `royalty` int DEFAULT 0 NOT NULL, `liabilities` int DEFAULT 0 NOT NULL, `ip_policy` varchar(255), `ip_flag` int DEFAULT 0 NOT NULL, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20161113123948')[0m
+  [1m[35m (43.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddAttachmentAvatarToUsers (20161121162309)
+  [1m[35m (212.1ms)[0m  [1m[35mALTER TABLE `creations` ADD `avatar_file_name` varchar(255)[0m
+  [1m[35m (212.6ms)[0m  [1m[35mALTER TABLE `creations` ADD `avatar_content_type` varchar(255)[0m
+  [1m[35m (168.1ms)[0m  [1m[35mALTER TABLE `creations` ADD `avatar_file_size` int[0m
+  [1m[35m (168.2ms)[0m  [1m[35mALTER TABLE `creations` ADD `avatar_updated_at` datetime[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20161121162309')[0m
+  [1m[35m (32.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateOwns (20161123162306)
+  [1m[35m (65.6ms)[0m  [1m[35mCREATE TABLE `owns` (`id` int AUTO_INCREMENT PRIMARY KEY, `user_id` int, `creation_id` int, `precentage` float, `email` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_owns_on_user_id`  (`user_id`),  INDEX `index_owns_on_creation_id`  (`creation_id`)) ENGINE=InnoDB[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20161123162306')[0m
+  [1m[35m (43.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to Test (20161124084156)
+  [1m[35m (212.4ms)[0m  [1m[35mALTER TABLE `creations` ADD `approver` int[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20161124084156')[0m
+  [1m[35m (34.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddAttachmentLicenceagreementToUsers (20161130155933)
+  [1m[35m (212.2ms)[0m  [1m[35mALTER TABLE `license_tos` ADD `licenceagreement_file_name` varchar(255)[0m
+  [1m[35m (212.6ms)[0m  [1m[35mALTER TABLE `license_tos` ADD `licenceagreement_content_type` varchar(255)[0m
+  [1m[35m (212.6ms)[0m  [1m[35mALTER TABLE `license_tos` ADD `licenceagreement_file_size` int[0m
+  [1m[35m (168.2ms)[0m  [1m[35mALTER TABLE `license_tos` ADD `licenceagreement_updated_at` datetime[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20161130155933')[0m
+  [1m[35m (32.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to RemoveColumns (20161130161802)
+  [1m[35m (167.9ms)[0m  [1m[35mALTER TABLE `license_tos` DROP `license_agreement`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20161130161802')[0m
+  [1m[35m (32.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'test', '2016-12-14 04:55:33', '2016-12-14 04:55:33')[0m
+  [1m[35m (37.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT RELEASE_LOCK('8099858807194810110')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `creations`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'creations'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `license_tos`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'license_tos'[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW CREATE TABLE `owns`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'owns'[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW CREATE TABLE `users`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'users'[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'dbms_project_test'
+  AND fk.table_name = 'creations'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'dbms_project_test'
+  AND fk.table_name = 'license_tos'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'dbms_project_test'
+  AND fk.table_name = 'owns'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'dbms_project_test'
+  AND fk.table_name = 'users'
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:48', '2016-12-14 04:55:48', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:48', '2016-12-14 04:55:48', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (45.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:48', '2016-12-14 04:55:48', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:48', '2016-12-14 04:55:48', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (62.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:48', '2016-12-14 04:55:48', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:48', '2016-12-14 04:55:48', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (49.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:48', '2016-12-14 04:55:48', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:48', '2016-12-14 04:55:48', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (37.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:48', '2016-12-14 04:55:48', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:48', '2016-12-14 04:55:48', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (32.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:48', '2016-12-14 04:55:48', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:48', '2016-12-14 04:55:48', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (38.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (38.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (37.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (38.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (38.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (38.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (36.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (38.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (41.9ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (36.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (38.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (40.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (38.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (49.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (46.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:55:49', '2016-12-14 04:55:49', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (49.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (96.8ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) PRIMARY KEY) ENGINE=InnoDB[0m
+  [1m[35m (87.1ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT GET_LOCK('8099858807194810110', 0);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to DeviseCreateUsers (20161108181455)
+  [1m[35m (74.3ms)[0m  [1m[35mCREATE TABLE `users` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `Occupation` varchar(255), `IPflag` int DEFAULT 0 NOT NULL, `adminflag` int DEFAULT 0 NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `confirmation_token` varchar(255), `confirmed_at` datetime, `confirmation_sent_at` datetime, `unconfirmed_email` varchar(255), `failed_attempts` int DEFAULT 0 NOT NULL, `unlock_token` varchar(255), `locked_at` datetime, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (155.8ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_email`  ON `users` (`email`) [0m
+  [1m[35m (156.0ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_reset_password_token`  ON `users` (`reset_password_token`) [0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20161108181455')[0m
+  [1m[35m (30.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateLicenseTos (20161112170328)
+  [1m[35m (65.7ms)[0m  [1m[35mCREATE TABLE `license_tos` (`id` int AUTO_INCREMENT PRIMARY KEY, `creation_id` int, `name` varchar(255) NOT NULL, `uid` int NOT NULL, `license_agreement` text NOT NULL, `LIA_file_name` varchar(255), `LIA_content_type` varchar(255), `LIA_file_size` int, `LIA_updated_at` datetime, `approve` tinyint(1), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_license_tos_on_creation_id`  (`creation_id`)) ENGINE=InnoDB[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20161112170328')[0m
+  [1m[35m (32.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCreations (20161113123948)
+  [1m[35m (66.0ms)[0m  [1m[35mCREATE TABLE `creations` (`id` int AUTO_INCREMENT PRIMARY KEY, `title` varchar(255), `tp` varchar(255), `proposal` varchar(255), `creator_id` int, `royalty` int DEFAULT 0 NOT NULL, `liabilities` int DEFAULT 0 NOT NULL, `ip_policy` varchar(255), `ip_flag` int DEFAULT 0 NOT NULL, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20161113123948')[0m
+  [1m[35m (32.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddAttachmentAvatarToUsers (20161121162309)
+  [1m[35m (213.8ms)[0m  [1m[35mALTER TABLE `creations` ADD `avatar_file_name` varchar(255)[0m
+  [1m[35m (201.5ms)[0m  [1m[35mALTER TABLE `creations` ADD `avatar_content_type` varchar(255)[0m
+  [1m[35m (212.6ms)[0m  [1m[35mALTER TABLE `creations` ADD `avatar_file_size` int[0m
+  [1m[35m (212.6ms)[0m  [1m[35mALTER TABLE `creations` ADD `avatar_updated_at` datetime[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20161121162309')[0m
+  [1m[35m (32.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateOwns (20161123162306)
+  [1m[35m (65.6ms)[0m  [1m[35mCREATE TABLE `owns` (`id` int AUTO_INCREMENT PRIMARY KEY, `user_id` int, `creation_id` int, `precentage` float, `email` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_owns_on_user_id`  (`user_id`),  INDEX `index_owns_on_creation_id`  (`creation_id`)) ENGINE=InnoDB[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20161123162306')[0m
+  [1m[35m (32.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to Test (20161124084156)
+  [1m[35m (190.2ms)[0m  [1m[35mALTER TABLE `creations` ADD `approver` int[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20161124084156')[0m
+  [1m[35m (32.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddAttachmentLicenceagreementToUsers (20161130155933)
+  [1m[35m (180.5ms)[0m  [1m[35mALTER TABLE `license_tos` ADD `licenceagreement_file_name` varchar(255)[0m
+  [1m[35m (201.5ms)[0m  [1m[35mALTER TABLE `license_tos` ADD `licenceagreement_content_type` varchar(255)[0m
+  [1m[35m (212.7ms)[0m  [1m[35mALTER TABLE `license_tos` ADD `licenceagreement_file_size` int[0m
+  [1m[35m (201.5ms)[0m  [1m[35mALTER TABLE `license_tos` ADD `licenceagreement_updated_at` datetime[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20161130155933')[0m
+  [1m[35m (32.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to RemoveColumns (20161130161802)
+  [1m[35m (167.5ms)[0m  [1m[35mALTER TABLE `license_tos` DROP `license_agreement`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20161130161802')[0m
+  [1m[35m (32.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'test', '2016-12-14 04:56:47', '2016-12-14 04:56:47')[0m
+  [1m[35m (37.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT RELEASE_LOCK('8099858807194810110')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `creations`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'creations'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `license_tos`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'license_tos'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `owns`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'owns'[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW CREATE TABLE `users`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'users'[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'dbms_project_test'
+  AND fk.table_name = 'creations'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'dbms_project_test'
+  AND fk.table_name = 'license_tos'
+[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'dbms_project_test'
+  AND fk.table_name = 'owns'
+[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'dbms_project_test'
+  AND fk.table_name = 'users'
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:51', '2016-12-14 04:56:51', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:51', '2016-12-14 04:56:51', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (77.9ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:51', '2016-12-14 04:56:51', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:51', '2016-12-14 04:56:51', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (33.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:51', '2016-12-14 04:56:51', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:51', '2016-12-14 04:56:51', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (37.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:51', '2016-12-14 04:56:51', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:51', '2016-12-14 04:56:51', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (39.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:51', '2016-12-14 04:56:51', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:51', '2016-12-14 04:56:51', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (37.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:51', '2016-12-14 04:56:51', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:51', '2016-12-14 04:56:51', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (48.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:51', '2016-12-14 04:56:51', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:51', '2016-12-14 04:56:51', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (37.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:51', '2016-12-14 04:56:51', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:51', '2016-12-14 04:56:51', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (47.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:51', '2016-12-14 04:56:51', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:51', '2016-12-14 04:56:51', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (38.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:51', '2016-12-14 04:56:51', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:51', '2016-12-14 04:56:51', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (49.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:51', '2016-12-14 04:56:51', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:51', '2016-12-14 04:56:51', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (48.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:52', '2016-12-14 04:56:52', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:52', '2016-12-14 04:56:52', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (37.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:52', '2016-12-14 04:56:52', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:52', '2016-12-14 04:56:52', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (36.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (7.8ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:52', '2016-12-14 04:56:52', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:52', '2016-12-14 04:56:52', 298486374)[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (40.9ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:52', '2016-12-14 04:56:52', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:52', '2016-12-14 04:56:52', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (36.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:52', '2016-12-14 04:56:52', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:52', '2016-12-14 04:56:52', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (38.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:52', '2016-12-14 04:56:52', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:52', '2016-12-14 04:56:52', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (37.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:52', '2016-12-14 04:56:52', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:52', '2016-12-14 04:56:52', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (35.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:52', '2016-12-14 04:56:52', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:52', '2016-12-14 04:56:52', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (36.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:52', '2016-12-14 04:56:52', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:52', '2016-12-14 04:56:52', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (36.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:52', '2016-12-14 04:56:52', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:56:52', '2016-12-14 04:56:52', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (36.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:29', '2016-12-14 04:57:29', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:29', '2016-12-14 04:57:29', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (62.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:29', '2016-12-14 04:57:29', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:29', '2016-12-14 04:57:29', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (67.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:29', '2016-12-14 04:57:29', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:29', '2016-12-14 04:57:29', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (38.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:29', '2016-12-14 04:57:29', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:29', '2016-12-14 04:57:29', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (38.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:29', '2016-12-14 04:57:29', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:29', '2016-12-14 04:57:29', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (38.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:29', '2016-12-14 04:57:29', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:29', '2016-12-14 04:57:29', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (38.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:29', '2016-12-14 04:57:29', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:29', '2016-12-14 04:57:29', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (38.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (37.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (38.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (37.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (38.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (37.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (38.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (40.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (38.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (38.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (37.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (38.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (40.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (49.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `owns`[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO `owns` (`precentage`, `email`, `created_at`, `updated_at`, `id`) VALUES (1.5, 'MyString', '2016-12-14 04:57:30', '2016-12-14 04:57:30', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM `license_tos`[0m
+  [1m[35m (38.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
