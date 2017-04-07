@@ -8,7 +8,7 @@ IP Asset Management Portal build on Ruby on Rails<br/>
 * **Installation and Running the portal** <br/> <br/>
   Open the Command Line Interface and do the following <br/>
   * git clone "https://github.com/SvrAdityaReddy/DBS_Project_IP_Asset_Mangement_Portal.git"
-  * Change the password of mysql database in the file **database.yml** in the follwing location **IP_Asset_Management_Portal/config/**
+  * Change the password of mysql database in the file **database.yml** in the following location **IP_Asset_Management_Portal/config/**
   * bundle install
   * rake db:create
   * rake db:migrate
